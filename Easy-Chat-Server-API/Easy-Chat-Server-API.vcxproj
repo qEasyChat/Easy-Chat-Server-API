@@ -156,6 +156,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SimpleIni.h" />
+    <ClInclude Include="SimpleIni_Manager.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SimpleIni_Manager.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>

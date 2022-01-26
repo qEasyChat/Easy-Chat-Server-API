@@ -36,6 +36,9 @@
     <ClInclude Include="SimpleIni.h">
       <Filter>3rd-party</Filter>
     </ClInclude>
+    <ClInclude Include="SimpleIni_Manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="sqlite3.c">
       <Filter>3rd-party</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleIni_Manager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
