@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ConvertUTF.h" />
+    <ClInclude Include="Database_Manager.h" />
     <ClInclude Include="DB_Driver.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
@@ -162,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConvertUTF.c" />
+    <ClCompile Include="Database_Manager.cpp" />
     <ClCompile Include="DB_Driver.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="pch.cpp">
