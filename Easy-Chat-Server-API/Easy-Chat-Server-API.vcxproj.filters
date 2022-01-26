@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="3rd-party">
+      <UniqueIdentifier>{078cede9-911b-4f9f-9721-89391dbde826}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -24,6 +27,15 @@
     <ClInclude Include="DB_Driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConvertUTF.h">
+      <Filter>3rd-party</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleIni.h">
+      <Filter>3rd-party</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -34,6 +46,15 @@
     </ClCompile>
     <ClCompile Include="DB_Driver.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConvertUTF.c">
+      <Filter>3rd-party</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>3rd-party</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
