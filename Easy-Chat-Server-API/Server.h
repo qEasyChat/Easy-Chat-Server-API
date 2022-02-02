@@ -1,5 +1,7 @@
 #pragma once
 #pragma comment( lib, "ws2_32.lib")
+#pragma comment(lib, "Easy-Chat-Utils-API.lib")
+
 #include <functional>
 #include <winsock2.h>
 #include <Ws2tcpip.h>
