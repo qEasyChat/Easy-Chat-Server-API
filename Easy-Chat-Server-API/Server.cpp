@@ -220,7 +220,13 @@ void Server::run_command(std::shared_ptr<Connection> user_connection, std::strin
 		std::string sender_username = user_connection->get_username();
 		auto args = Utils::string_to_vector<std::string>(command);
 		std::string destination_username = args[1];
-		std::string message = args[2];
+
+		std::string message = "";
+
+		for (size_t i = 2; i< args.size(); ++i)
+		{
+			message += args[i] + " ";
+		}		
 
 		send_to_one(user_connection->get_username(), destination_username, message);
 	}
