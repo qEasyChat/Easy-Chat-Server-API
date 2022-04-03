@@ -42,6 +42,8 @@ public:
 	void connect_to_database(Database_Driver_Type driver_type, std::string ini_file_path);
 	
 private:
+	const std::string PM_COMMAND = "/pm ";
+
 	std::string name;
 
 	std::thread send_worker;

@@ -177,7 +177,7 @@ void Server::send_to_one(std::string username, std::string destination_username,
 	}
 	mtx.lock();
 	std::string pkg = "";
-	std::string wrapped_message = this->get_wrapped_message(username, message);
+	std::string wrapped_message = "[PM from " + username + " ]: " + message;
 	std::cout << wrapped_message << std::endl;
 	auto destination_connection = username_connection_map[destination_username];
 	destination_connection->send_message(wrapped_message);
@@ -215,6 +215,14 @@ void Server::run_command(std::shared_ptr<Connection> user_connection, std::strin
 	if (command == "/online")
 	{
 		send_online_users(user_connection);
+	} else if (command.find(PM_COMMAND) != std::string::npos)
+	{
+		std::string sender_username = user_connection->get_username();
+		auto args = Utils::string_to_vector<std::string>(command);
+		std::string destination_username = args[1];
+		std::string message = args[2];
+
+		send_to_one(user_connection->get_username(), destination_username, message);
 	}
 }
 
