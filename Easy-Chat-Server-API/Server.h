@@ -60,7 +60,6 @@ private:
 
 	std::shared_ptr<DB_Driver> db_driver;
 
-	void send_to_all(std::string username, std::string message);
 	void reciver(std::shared_ptr<Connection> client_connection);
 	void server_module();
 
@@ -74,6 +73,8 @@ private:
 	void build_commands_map();
 	void run_command(std::shared_ptr<Connection> user_connection, std::string command);
 	void send_online_users(std::shared_ptr<Connection> user_connection);
+	void send_to_all(std::string username, std::string message);
+	void send_to_one(std::string username, std::string destination_username, std::string message);
 
 	void server_command_manager();
 	void add_new_user(std::string username, std::string password);

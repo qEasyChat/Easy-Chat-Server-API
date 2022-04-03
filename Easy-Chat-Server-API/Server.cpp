@@ -102,7 +102,7 @@ void Server::server_module()
 			workers[client_connection] = std::move(worker);
 			this->send_online_users(client_connection);
 		}
-		client_connection->send_message("Welcome to " + this->name);
+		client_connection->send_message("Welcome to " + this->name + "\n");
 		this->notify_users_new_connection(username);
 		mtx.unlock();
 	}
@@ -157,6 +157,7 @@ void Server::send_to_all(std::string username, std::string message) {
 	mtx.lock();
 	std::string pkg = "";
 	std::string wrapped_message = this->get_wrapped_message(username, message);
+	std::cout << wrapped_message << std::endl;
 	for (auto const& item : this->username_connection_map) {
 		if(item.first != username)
 		{
@@ -166,6 +167,24 @@ void Server::send_to_all(std::string username, std::string message) {
 	mtx.unlock();
 	std::this_thread::sleep_for(WAIT_PERIOD);
 }
+
+void Server::send_to_one(std::string username, std::string destination_username, std::string message)
+{
+	if (username_connection_map.find(destination_username) == username_connection_map.end())
+	{
+		std::cout << destination_username << " has not been found";
+		return;
+	}
+	mtx.lock();
+	std::string pkg = "";
+	std::string wrapped_message = this->get_wrapped_message(username, message);
+	std::cout << wrapped_message << std::endl;
+	auto destination_connection = username_connection_map[destination_username];
+	destination_connection->send_message(wrapped_message);
+	mtx.unlock();
+	std::this_thread::sleep_for(WAIT_PERIOD);
+}
+
 
 void Server::notify_users_new_connection(std::string username)
 {
