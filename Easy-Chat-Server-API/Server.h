@@ -43,6 +43,7 @@ public:
 	
 private:
 	const std::string PM_COMMAND = "/pm ";
+	const std::string FILE_COMMAND = "/file ";
 
 	std::string name;
 

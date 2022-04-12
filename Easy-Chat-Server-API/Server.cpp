@@ -245,7 +245,13 @@ void Server::run_command(std::shared_ptr<Connection> user_connection, std::strin
 		}		
 
 		send_to_one(user_connection->get_username(), destination_username, message);
+	} else if (command.find(FILE_COMMAND) != std::string::npos)
+	{
+		std::string sender_username = user_connection->get_username();
+		auto data = user_connection->recive_bytes();
+		send_data_to_all(sender_username, data);
 	}
+	
 }
 
 void Server::send_online_users(std::shared_ptr<Connection> user_connection)
