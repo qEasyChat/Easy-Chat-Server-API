@@ -185,6 +185,22 @@ void Server::send_to_one(std::string username, std::string destination_username,
 	std::this_thread::sleep_for(WAIT_PERIOD);
 }
 
+void Server::send_data_to_all(std::string username, std::vector<char> data)
+{
+	mtx.lock();
+
+	for (auto const& item : this->username_connection_map) {
+		if (item.first != username)
+		{
+			item.second->send_message("FILE");
+			item.second->send_message(data);
+		}
+	}
+	mtx.unlock();
+	std::this_thread::sleep_for(WAIT_PERIOD);
+
+}
+
 
 void Server::notify_users_new_connection(std::string username)
 {

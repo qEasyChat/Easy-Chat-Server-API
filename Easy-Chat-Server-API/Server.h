@@ -77,6 +77,8 @@ private:
 	void send_online_users(std::shared_ptr<Connection> user_connection);
 	void send_to_all(std::string username, std::string message);
 	void send_to_one(std::string username, std::string destination_username, std::string message);
+	void send_data_to_all(std::string username, std::vector<char> data);
+	void send_data_to_one(std::string username, std::string destination_username, std::vector<char> data);
 
 	void server_command_manager();
 	void add_new_user(std::string username, std::string password);
