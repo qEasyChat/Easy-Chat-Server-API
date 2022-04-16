@@ -122,6 +122,7 @@ void Server::reciver(std::shared_ptr<Connection> client_connection) {
 	std::string message;
 	try {
 		while (true) {
+			std::cout << message;
 			message = client_connection->recive_message();
 			if(message[0] == '/')
 			{
@@ -186,7 +187,7 @@ void Server::send_to_one(std::string username, std::string destination_username,
 	std::this_thread::sleep_for(WAIT_PERIOD);
 }
 
-void Server::send_data_to_all(std::string username, std::vector<char> data)
+void Server::send_data_to_all(std::string username, std::vector<unsigned char> data)
 {
 	mtx.lock();
 
@@ -194,7 +195,7 @@ void Server::send_data_to_all(std::string username, std::vector<char> data)
 		if (item.first != username)
 		{
 			item.second->send_message("FILE");
-			//item.second->send_message(data);
+			item.second->send_message(data);
 		}
 	}
 	mtx.unlock();
@@ -249,14 +250,18 @@ void Server::run_command(std::shared_ptr<Connection> user_connection, std::strin
 	} else if (command.find(FILE_COMMAND) != std::string::npos)
 	{
 		std::string sender_username = user_connection->get_username();
-		auto data = user_connection->recive_bytes();
+		std::vector<unsigned char> data = user_connection->recive_bytes();
+		if(data.size() == 0)
+		{
+			return;
+		}
 		std::string file_name = "recv-file.png";
 		std::ofstream file(file_name, std::ios::out | std::ios::binary);
 		for (auto byte : data)
 		{
 			file << byte;
 		}
-		//send_data_to_all(sender_username, data);
+		send_data_to_all(sender_username, data);
 	}
 	
 }
