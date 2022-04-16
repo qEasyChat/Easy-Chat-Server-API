@@ -3,6 +3,7 @@
 #define SERVER_EXPORTS
 #include "Server.h"
 
+#include <fstream>
 #include <iostream>
 
 #include "Crypto_Manager.h"
@@ -193,7 +194,7 @@ void Server::send_data_to_all(std::string username, std::vector<char> data)
 		if (item.first != username)
 		{
 			item.second->send_message("FILE");
-			item.second->send_message(data);
+			//item.second->send_message(data);
 		}
 	}
 	mtx.unlock();
@@ -249,7 +250,13 @@ void Server::run_command(std::shared_ptr<Connection> user_connection, std::strin
 	{
 		std::string sender_username = user_connection->get_username();
 		auto data = user_connection->recive_bytes();
-		send_data_to_all(sender_username, data);
+		std::string file_name = "recv-file.png";
+		std::ofstream file(file_name, std::ios::out | std::ios::binary);
+		for (auto byte : data)
+		{
+			file << byte;
+		}
+		//send_data_to_all(sender_username, data);
 	}
 	
 }
